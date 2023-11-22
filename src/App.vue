@@ -36,6 +36,6 @@ nav a:hover {
 }
 
 .active {
-  color: #82b8f1
+  color: #288bef
 }
 </style>
