@@ -16,5 +16,14 @@ export const useHeroesStore = defineStore('heroes', {
   }),
   getters: {
     top: (state) => state.heroes.slice(0, 5),
+  },
+  actions: {
+    findById(id) {
+      return this.heroes.find(item => item.id === id);
+    },
+    updateName(id, newName) {
+      const hero = this.findById(id);
+      hero.name = newName;
+    }
   }
 })
