@@ -32,11 +32,12 @@ const heroesStore = useHeroesStore()
 
   ul li {
     list-style: none;
+    border-radius: 5px;
   }
 
   ul li a {
     display: flex;
-    margin: .5rem;
+    margin: .5rem 0;
     color: #737373;
     text-decoration: none;
     background-color: rgba(180, 179, 179, 0.76);
@@ -52,6 +53,7 @@ const heroesStore = useHeroesStore()
     padding: .5rem;
     color: white;
     background-color: #30737c;
+    border-radius: 5px 0 0 5px;
   }
 
   .name {

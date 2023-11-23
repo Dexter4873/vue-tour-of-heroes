@@ -13,7 +13,7 @@
 <style scoped>
 h1 {
   padding: 1rem;
-  color: #8d8d8d;
+  color: #5d5d5d;
 }
 
 nav {
