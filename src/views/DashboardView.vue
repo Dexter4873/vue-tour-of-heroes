@@ -2,6 +2,8 @@
 import { useHeroesStore } from '@/stores/heroes'
 
 const heroesStore = useHeroesStore()
+console.log(heroesStore.heroes)
+console.log(heroesStore.top)
 </script>
 
 <template>

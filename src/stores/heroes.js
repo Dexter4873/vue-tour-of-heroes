@@ -15,15 +15,21 @@ export const useHeroesStore = defineStore('heroes', {
     ]
   }),
   getters: {
-    top: (state) => state.heroes.slice(0, 5),
+    top() {
+      return this.heroes.slice(0, 5)
+    }
   },
   actions: {
     findById(id) {
-      return this.heroes.find(item => item.id === id);
+      return this.heroes.find((item) => item.id === id)
     },
     updateName(id, newName) {
-      const hero = this.findById(id);
-      hero.name = newName;
+      const hero = this.findById(id)
+      hero.name = newName
+    },
+    deleteById(id) {
+      const index = this.heroes.findIndex((hero) => hero.id === id)
+      this.heroes.splice(index, 1)
     }
   }
 })
