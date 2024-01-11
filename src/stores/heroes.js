@@ -12,14 +12,22 @@ export const useHeroesStore = defineStore('heroes', {
       { id: 18, name: 'Dr. IQ' },
       { id: 19, name: 'Magma' },
       { id: 20, name: 'Tornado' }
-    ]
+    ],
+    nextId: 21,
   }),
   getters: {
     top() {
       return this.heroes.slice(0, 5)
+    },
+    empty() {
+      return this.heroes.length === 0;
     }
   },
   actions: {
+    add(name) {
+      this.heroes.push({id: this.nextId, name})
+      this.nextId++;
+    },
     findById(id) {
       return this.heroes.find((item) => item.id === id)
     },

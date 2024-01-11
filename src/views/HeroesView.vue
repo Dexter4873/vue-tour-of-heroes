@@ -1,6 +1,7 @@
 <script setup>
 import { useHeroesStore } from '@/stores/heroes'
 import BackButton from "@/components/BackButton.vue";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const heroesStore = useHeroesStore()
 
@@ -13,7 +14,7 @@ const handleDelete = (id) => {
   <div class="container">
     <h1>My heroes</h1>
     <ul>
-      <li v-for="hero in heroesStore.heroes" :key="hero.id">
+      <li v-if="heroesStore.heroes.length" v-for="hero in heroesStore.heroes" :key="hero.id">
         <router-link :to="`/heroes/detail/${hero.id}`">
           <span class="badge">{{hero.id}}</span>
           <span class="name">{{ hero.name}}</span>
@@ -22,6 +23,13 @@ const handleDelete = (id) => {
           <font-awesome-icon icon="fa-solid fa-trash" />
         </span>
       </li>
+      <li v-else class="no-heroes">
+        There's no heroes add some...
+      </li>
+      <router-link to="/heroes/add" class="add-btn" >
+        Add new hero
+        <font-awesome-icon icon="fa-solid fa-plus" />
+      </router-link>
     </ul>
     <back-button />
   </div>
@@ -30,7 +38,7 @@ const handleDelete = (id) => {
 <style scoped>
   .container {
     padding: 1rem;
-    width: 15rem;
+    width: 17rem;
   }
 
   ul {
@@ -83,5 +91,21 @@ const handleDelete = (id) => {
 
   .delete:hover {
     background-color: #ec3434;
+  }
+
+  .add-btn {
+    padding: .5rem;
+    border-radius: 5px;
+    background-color: #30737c;
+    border: 2px dashed gray;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .no-heroes {
+    color: gray;
+    font-size: small;
+    text-decoration: underline;
   }
 </style>
