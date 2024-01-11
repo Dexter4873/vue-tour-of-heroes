@@ -2,8 +2,18 @@
 import { useHeroesStore } from '@/stores/heroes'
 import BackButton from "@/components/BackButton.vue";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { ref, watch } from 'vue'
 
 const heroesStore = useHeroesStore()
+const sort = ref('id');
+
+watch(sort, (newSort) => {
+  if (newSort === 'id') {
+    heroesStore.sortById();
+  } else {
+    heroesStore.sortByName();
+  }
+})
 
 const handleDelete = (id) => {
   heroesStore.deleteById(id)
@@ -12,7 +22,13 @@ const handleDelete = (id) => {
 
 <template>
   <div class="container">
-    <h1>My heroes</h1>
+    <h1>
+      My heroes
+      <select v-model="sort">
+        <option value="id">Id</option>
+        <option value="name">Name</option>
+      </select>
+    </h1>
     <ul>
       <li v-if="heroesStore.heroes.length" v-for="hero in heroesStore.heroes" :key="hero.id">
         <router-link :to="`/heroes/detail/${hero.id}`">

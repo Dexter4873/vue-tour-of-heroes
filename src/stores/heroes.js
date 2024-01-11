@@ -38,6 +38,12 @@ export const useHeroesStore = defineStore('heroes', {
     deleteById(id) {
       const index = this.heroes.findIndex((hero) => hero.id === id)
       this.heroes.splice(index, 1)
+    },
+    sortById() {
+      this.heroes.sort((prev, next) => prev.id - next.id);
+    },
+    sortByName() {
+      this.heroes.sort((prev, next) => prev.name.toLowerCase().localeCompare(next.name.toLowerCase()));
     }
   }
 })
